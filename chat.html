@@ -29,7 +29,7 @@ window.onload = function () {
     };
 
     if (window["WebSocket"]) {
-        conn = new WebSocket("ws://" + document.location.host + "/ws/chat?user_id=66b3345cb91a5d74048d30dd");
+        conn = new WebSocket("ws://" + document.location.host + "/ws/chat?user_id=66b5c3395123d7c9fbb3f38f");
         conn.onclose = function (evt) {
             var item = document.createElement("div");
             item.innerHTML = "<b>Connection closed.</b>";

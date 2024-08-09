@@ -1,13 +1,22 @@
 package models
 
-import "github.com/wooden-fish-clicker/chat/pkg/db"
+import (
+	"time"
+)
 
 type User struct {
-	Name     string `bson:"name"`
-	Email    string `bson:"email"`
-	Password string `bson:"password"`
-	Country  string `bson:"country"`
-	Points   int    `bson:"points"`
+	ID        string    `bson:"_id,omitempty"`
+	Email     string    `bson:"email"`
+	Account   string    `bson:"account"`
+	Password  string    `bson:"password"`
+	UserInfo  UserInfo  `bson:"user_info"`
+	CreatedAt time.Time `bson:"created_at"`
+	UpdatedAt time.Time `bson:"updated_at,omitempty"`
+}
 
-	db.BaseModel `bson:",inline"`
+type UserInfo struct {
+	Name    string `bson:"name"`
+	Country string `bson:"country"`
+	Points  int    `bson:"points"`
+	Hp      int    `bson:"hp"`
 }

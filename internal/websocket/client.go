@@ -182,11 +182,13 @@ func fetchUsername(userID string) (string, error) {
 	filter := bson.M{"_id": objectID}
 
 	var result struct {
-		Name string `bson:"name"`
+		UserInfo struct {
+			Name string `bson:"name"`
+		} `bson:"user_info"`
 	}
 	err = collection.FindOne(context.Background(), filter).Decode(&result)
 	if err != nil {
 		return "", err
 	}
-	return result.Name, nil
+	return result.UserInfo.Name, nil
 }
