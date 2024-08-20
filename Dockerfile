@@ -23,6 +23,7 @@ WORKDIR /app
 COPY --from=builder /app/main .
 
 COPY configs ./configs
+COPY chat.html ./chat.html
 
 COPY entrypoint.sh /usr/local/bin/
 
