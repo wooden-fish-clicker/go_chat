@@ -9,6 +9,7 @@ import (
 	"time"
 
 	"github.com/gorilla/websocket"
+	"github.com/wooden-fish-clicker/chat/middleware"
 	"github.com/wooden-fish-clicker/chat/pkg/db"
 	"go.mongodb.org/mongo-driver/bson"
 	"go.mongodb.org/mongo-driver/bson/primitive"
@@ -48,6 +49,14 @@ type Client struct {
 }
 
 func RecvFunc(hub *Hub, w http.ResponseWriter, r *http.Request) {
+
+	claims, err := middleware.ValidateWebSocketToken(r)
+	if err != nil {
+		http.Error(w, "Wrong Token", http.StatusUnauthorized)
+		return
+	}
+	println(claims.Subject)
+
 	userID := r.URL.Query().Get("user_id")
 	if userID == "" {
 		http.Error(w, "Missing user ID", http.StatusBadRequest)

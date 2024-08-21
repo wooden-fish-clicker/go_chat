@@ -3,6 +3,7 @@ module github.com/wooden-fish-clicker/chat
 go 1.21.6
 
 require (
+	github.com/dgrijalva/jwt-go v3.2.0+incompatible
 	github.com/go-redis/redis/v8 v8.11.5
 	github.com/gorilla/websocket v1.5.3
 	github.com/joho/godotenv v1.5.1
