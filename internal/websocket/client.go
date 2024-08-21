@@ -55,13 +55,8 @@ func RecvFunc(hub *Hub, w http.ResponseWriter, r *http.Request) {
 		http.Error(w, "Wrong Token", http.StatusUnauthorized)
 		return
 	}
-	println(claims.Subject)
 
-	userID := r.URL.Query().Get("user_id")
-	if userID == "" {
-		http.Error(w, "Missing user ID", http.StatusBadRequest)
-		return
-	}
+	userID := claims.Subject
 
 	// Fetch username from MongoDB
 	userName, err := fetchUsername(userID)
